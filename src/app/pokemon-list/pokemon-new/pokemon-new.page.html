@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nouveau Film</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input type="text" label="Affiche" [(ngModel)]="pokemon.imageUrl"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Titre" [(ngModel)]="pokemon.name"></ion-input>
+  </ion-item>
+  <p class="text-center">
+    <ion-button (click)="add()">Envoyer</ion-button>
+  </p>
+</ion-content>

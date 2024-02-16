@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pokemon"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="pokemon">{{ pokemon.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-button (click)="setModif()">Rendre Modifiable</ion-button>
+  <div *ngIf="!modif">
+    <ion-grid *ngIf="pokemon">
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="onDelete(pokemon.id)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <img [src]="pokemon.imageUrl" [alt]="pokemon.name">
+        </ion-col>
+        <ion-col>
+          <strong>Pokemon Name</strong><br>
+          {{pokemon.name}} <br>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+  <div *ngIf="modif">
+    <ion-item>
+      <ion-input type="text" label="Affiche" [(ngModel)]="pokemon.imageUrl"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" label="Titre" [(ngModel)]="pokemon.name"></ion-input>
+    </ion-item>
+    <p class="text-center">
+      <ion-button (click)="onModif()">Modifier</ion-button>
+    </p>
+  </div>
+</ion-content>

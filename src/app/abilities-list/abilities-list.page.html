@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ma bibliothèque</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h2>Ajout d'une nouvelle ability</h2>
+  <ion-button routerLink="/abilities/new">Ajouts</ion-button>
+  <h2>Liste des Pokémons</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let ability of abilities">
+        <ion-card [routerLink]="['/abilities', ability.id]">
+          <ion-title>{{ ability.name }}</ion-title>
+          
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  Pied de page
+</ion-footer>
+

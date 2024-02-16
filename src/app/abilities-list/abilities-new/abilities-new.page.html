@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nouveau Film</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input type="text" label="Nom" [(ngModel)]="abilities.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" label="pp" [(ngModel)]="abilities.pp"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" label="power" [(ngModel)]="abilities.power"></ion-input>
+  </ion-item>
+  <p class="text-center">
+    <ion-button (click)="add()">Envoyer</ion-button>
+  </p>
+</ion-content>
