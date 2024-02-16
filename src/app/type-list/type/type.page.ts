@@ -34,14 +34,13 @@ export class TypePage implements OnInit {
   async setEdit() {
     if(!this.edit) {
       const alert = await this.alertCtrl.create({
-        header : 'Etes vous sur de vouloir editier ?',
-        subHeader: 'Vous rendrez possible la editication',
+        header : 'Are you sure you want to edit ?',
         buttons : [
           {
-            text: 'Annuler',
+            text: 'Cancel',
             role: 'Cancel'
           }, {
-            text: 'Configurer',
+            text: 'Configure',
             handler: () => {this.edit = !this.edit}
           }
         ]
@@ -54,7 +53,7 @@ export class TypePage implements OnInit {
 
   async presentToast() {
     const toast = this.toastCtrl.create({
-      message: 'Vos editications sont enregistrées',
+      message: 'Edit successfull !',
       duration: 2000
     });
     (await toast).present();
