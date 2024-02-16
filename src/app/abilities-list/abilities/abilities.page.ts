@@ -11,7 +11,7 @@ import { AbilitiesService } from 'src/app/services/abilities.service';
 })
 export class AbilitiesPage implements OnInit {
 
-  modif: boolean = false;
+  edit: boolean = false;
   abilities!: Abilities;
 
 
@@ -30,39 +30,39 @@ export class AbilitiesPage implements OnInit {
       this.abilities = value;
     });
   }
-  async setModif() {
-    if(!this.modif) {
+  async setEdit() {
+    if(!this.edit) {
       const alert = await this.alertCtrl.create({
-        header : 'Etes vous sur de vouloir modifier ?',
-        subHeader: 'Vous rendrez possible la modification',
+        header : 'Etes vous sur de vouloir editier ?',
+        subHeader: 'Vous rendrez possible la editication',
         buttons : [
           {
             text: 'Annuler',
             role: 'Cancel'
           }, {
             text: 'Configurer',
-            handler: () => {this.modif = !this.modif}
+            handler: () => {this.edit = !this.edit}
           }
         ]
       });
       await alert.present();
     } else {
-      this.modif = !this.modif;
+      this.edit = !this.edit;
     }
   }
 
   async presentToast() {
     const toast = this.toastCtrl.create({
-      message: 'Vos modifications sont enregistrées',
+      message: 'Vos editications sont enregistrées',
       duration: 2000
     });
     (await toast).present();
   }
 
-  onModif() {
+  onEdit() {
     this.Abilities.update(this.abilities).subscribe(() => {
       this.presentToast();
-      this.modif = false;
+      this.edit = false;
     });
   }
 

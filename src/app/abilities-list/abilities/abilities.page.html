@@ -1,13 +1,68 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>abilities</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/abilities"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="abilities">{{ abilities.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">abilities</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="ion-padding">
+    <ion-button
+      expand="block"
+      color="secondary"
+      (click)="setEdit()"
+      *ngIf="!edit"
+      >Edit</ion-button
+    >
+
+    <div *ngIf="!edit">
+      <ion-grid *ngIf="abilities">
+        <ion-row>
+          <ion-col>
+            <ion-button color="danger" (click)="onDelete(abilities.id)">
+              <ion-icon name="trash"></ion-icon> Delete
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Abilities Name</strong><br />
+            {{abilities.name}} <br />
+          </ion-col>
+          <ion-col>
+            <strong>PP</strong><br />
+            {{abilities.pp}} <br />
+          </ion-col>
+          <ion-col>
+            <strong>Power</strong><br />
+            {{abilities.power}} <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="edit">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" [(ngModel)]="abilities.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PP</ion-label>
+          <ion-input type="text" [(ngModel)]="abilities.pp"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Power</ion-label>
+          <ion-input type="text" [(ngModel)]="abilities.power"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="ion-text-center ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="onEdit()"
+          >Edit</ion-button
+        >
+      </div>
+    </div>
+  </div>
 </ion-content>

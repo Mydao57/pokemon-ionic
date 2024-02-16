@@ -1,13 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>type</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pokemon"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="type">{{ type.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">type</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="ion-padding">
+    <ion-button expand="block" color="secondary" (click)="setEdit()" *ngIf="!edit">Edit</ion-button>
+
+    <div *ngIf="!edit">
+      <ion-grid *ngIf="type">
+        <ion-row>
+          <ion-col>
+            <ion-button color="danger" (click)="onDelete(type.id)">
+              <ion-icon name="trash"></ion-icon> Delete
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <img [src]="type.imageUrl" [alt]="type.name">
+          </ion-col>
+          <ion-col>
+            <strong>Type Name</strong><br>
+            {{type.name}} <br>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="edit">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Affiche</ion-label>
+          <ion-input type="text" [(ngModel)]="type.imageUrl"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Titre</ion-label>
+          <ion-input type="text" [(ngModel)]="type.name"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="ion-text-center ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="onEdit()">Edit</ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>

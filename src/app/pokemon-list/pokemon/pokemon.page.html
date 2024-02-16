@@ -1,43 +1,51 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/pokemon"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="pokemon">{{ pokemon.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-button (click)="setModif()">Rendre Modifiable</ion-button>
-  <div *ngIf="!modif">
-    <ion-grid *ngIf="pokemon">
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="onDelete(pokemon.id)">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <img [src]="pokemon.imageUrl" [alt]="pokemon.name">
-        </ion-col>
-        <ion-col>
-          <strong>Pokemon Name</strong><br>
-          {{pokemon.name}} <br>
-        </ion-col>
-      </ion-row>
 
-    </ion-grid>
-  </div>
-  <div *ngIf="modif">
-    <ion-item>
-      <ion-input type="text" label="Affiche" [(ngModel)]="pokemon.imageUrl"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" label="Titre" [(ngModel)]="pokemon.name"></ion-input>
-    </ion-item>
-    <p class="text-center">
-      <ion-button (click)="onModif()">Modifier</ion-button>
-    </p>
+<ion-content>
+  <div class="ion-padding">
+    <ion-button expand="block" color="secondary" (click)="setEdit()" *ngIf="!edit">Edit</ion-button>
+
+    <div *ngIf="!edit">
+      <ion-grid *ngIf="pokemon">
+        <ion-row>
+          <ion-col>
+            <ion-button color="danger" (click)="onDelete(pokemon.id)">
+              <ion-icon name="trash"></ion-icon> Delete
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <img [src]="pokemon.imageUrl" [alt]="pokemon.name">
+          </ion-col>
+          <ion-col>
+            <strong>Pokemon name</strong><br>
+            {{pokemon.name}} <br>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="edit">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Pokemon Image</ion-label>
+          <ion-input type="text" [(ngModel)]="pokemon.imageUrl"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" [(ngModel)]="pokemon.name"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="ion-text-center ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="onEdit()">Edit</ion-button>
+      </div>
+    </div>
   </div>
 </ion-content>

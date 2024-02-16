@@ -1,17 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Nouveau Film</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>New pokemon</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-input type="text" label="Affiche" [(ngModel)]="pokemon.imageUrl"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" label="Titre" [(ngModel)]="pokemon.name"></ion-input>
-  </ion-item>
-  <p class="text-center">
-    <ion-button (click)="add()">Envoyer</ion-button>
-  </p>
+  <div class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Pokemon image</ion-label>
+        <ion-input type="text" [(ngModel)]="pokemon.imageUrl"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="pokemon.name"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-text-center ion-padding-top">
+      <ion-button expand="block" color="secondary" (click)="add()">Add</ion-button>
+    </div>
+  </div>
 </ion-content>

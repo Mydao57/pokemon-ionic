@@ -11,7 +11,7 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonPage implements OnInit {
 
-  modif: boolean = false;
+  edit: boolean = false;
   pokemon!: Pokemon;
 
 
@@ -30,39 +30,38 @@ export class PokemonPage implements OnInit {
       this.pokemon = value;
     });
   }
-  async setModif() {
-    if(!this.modif) {
+  async setEdit() {
+    if(!this.edit) {
       const alert = await this.alertCtrl.create({
-        header : 'Etes vous sur de vouloir modifier ?',
-        subHeader: 'Vous rendrez possible la modification',
+        header : 'Are you sure you want to edit ?',
         buttons : [
           {
-            text: 'Annuler',
+            text: 'Cancel',
             role: 'Cancel'
           }, {
-            text: 'Configurer',
-            handler: () => {this.modif = !this.modif}
+            text: 'Configure',
+            handler: () => {this.edit = !this.edit}
           }
         ]
       });
       await alert.present();
     } else {
-      this.modif = !this.modif;
+      this.edit = !this.edit;
     }
   }
 
   async presentToast() {
     const toast = this.toastCtrl.create({
-      message: 'Vos modifications sont enregistrées',
+      message: 'Edit successfull !',
       duration: 2000
     });
     (await toast).present();
   }
 
-  onModif() {
+  onEdit() {
     this.Pokemon.update(this.pokemon).subscribe(() => {
       this.presentToast();
-      this.modif = false;
+      this.edit = false;
     });
   }
 

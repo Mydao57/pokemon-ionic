@@ -1,24 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Ma bibliothèque</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Types</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <h2>Ajout d'un nouveau Type</h2>
-  <ion-button routerLink="/type/new">Ajouts</ion-button>
-  <h2>Liste des Pokémons</h2>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" *ngFor="let type of types">
-        <ion-card [routerLink]="['/type', type.id]">
-          <img [src]="type.imageUrl" [alt]="type.name">
-          
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
-<ion-footer>
-  Pied de page
-</ion-footer>
 
+<ion-content>
+  <div class="ion-padding">
+    <h2>Add a New Type</h2>
+    <ion-button expand="block" color="secondary" routerLink="/type/new">Add</ion-button>
+    <h2>Type List</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="4" size-lg="3" *ngFor="let type of types">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ type.name }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img [src]="type.imageUrl" [alt]="type.name" style="max-width: 100%;">
+            </ion-card-content>
+            <ion-item lines="none">
+              <ion-button expand="block" fill="clear" color="medium" [routerLink]="['/type', type.id]">View Details</ion-button>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

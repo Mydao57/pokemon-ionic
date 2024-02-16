@@ -25,7 +25,7 @@ export class TypeNewPage implements OnInit {
 
   async presentToast() {
     const toast = this.toastCtrl.create({
-      message: 'Nouveau Pokémon enregistré',
+      message: 'New type added',
       duration: 2000
     });
     (await toast).present().then(() => {
